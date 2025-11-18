@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rocky — Chatbot</title>
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#06b6d4; --muted:#94a3b8;
+      --radius:12px; --glass: rgba(255,255,255,0.03);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%;margin:0;background:
+      linear-gradient(180deg, #071028 0%, #071220 60%); color:#e6eef6;}
+    .page{
+      max-width:1100px;margin:40px auto;padding:28px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:16px; box-shadow: 0 8px 30px rgba(2,6,23,0.6); overflow:hidden;
+    }
+    header{display:flex;gap:16px;align-items:center}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#022; font-size:20px;
+      box-shadow: 0 6px 18px rgba(12,24,40,0.6);
+    }
+    h1{margin:0;font-size:20px}
+    p.lead{margin:6px 0 18px;color:var(--muted);font-size:14px}
+    .card{
+      padding:18px;border-radius:12px;background:var(--glass); border:1px solid rgba(255,255,255,0.03);
+      display:flex;gap:18px;align-items:flex-start;
+    }
+    .col{flex:1;min-width:220px}
+    .example{font-size:13px;color:#cfe9f2;background:rgba(255,255,255,0.02);padding:10px;border-radius:8px}
+    footer{margin-top:14px;color:var(--muted);font-size:13px;text-align:center}
+    /* Accessibility: ensure any injected chat gets margin away from page elements */
+    .chat-anchor { margin-top: 18px; }
+    @media (max-width:700px){
+      .page{margin:18px;padding:16px}
+      header{flex-direction:row}
+    }
+  </style>
+</head>
+<body>
+  <main class="page" role="main" aria-labelledby="page-title">
+    <header>
+      <div class="logo" aria-hidden="true">R</div>
+      <div>
+        <h1 id="page-title">Rocky — Your Chat Assistant</h1>
+        <p class="lead">Fast, friendly, and dependable chatbot integration. Use the chat widget (bottom-right) to interact with Rocky.</p>
+      </div>
+    </header>
+
+    <section class="card" aria-label="Chatbot info">
+      <div class="col">
+        <strong>About Rocky</strong>
+        <div style="height:8px"></div>
+        <div class="example">
+          Rocky is a fast, smart, and friendly AI assistant that provides clear answers and helps users instantly with confidence.
+        </div>
+      </div>
+
+      <div class="col">
+        <strong>How to use</strong>
+        <div style="height:8px"></div>
+        <ol style="margin:0 0 0 18px;color:var(--muted);font-size:14px">
+          <li>Open this page in a browser.</li>
+          <li>Wait a moment for Watson Assistant to load the chat widget (bottom-right).</li>
+          <li>Click the chat bubble and start chatting with Rocky.</li>
+        </ol>
+      </div>
+    </section>
+
+    <div class="chat-anchor" aria-hidden="true"></div>
+
+    <footer>
+      Rocky powered by IBM Watson Assistant — integration script embedded below.
+    </footer>
+  </main>
+
+  <!-- BEGIN: Watson Assistant embed (provided unchanged) -->
+  <script>
+    window.watsonAssistantChatOptions = {
+      integrationID: "337147e9-1f54-4131-9c4f-e9f423df2620", // The ID of this integration.
+      region: "au-syd", // The region your integration is hosted in.
+      serviceInstanceID: "2cfd7ad5-6c7b-478b-918e-a593944920aa", // The ID of your service instance.
+      onLoad: async (instance) => { await instance.render(); }
+    };
+    setTimeout(function(){
+      const t=document.createElement('script');
+      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+      document.head.appendChild(t);
+    });
+  </script>
+  <!-- END: Watson Assistant embed -->
+
+  <noscript style="display:block;padding:12px;text-align:center;color:#ffd6d6;background:#2a1010;margin:12px;border-radius:8px;max-width:1100px;margin-left:auto;margin-right:auto;">
+    JavaScript is required for the chat widget to load. Please enable JavaScript and reload the page.
+  </noscript>
+</body>
+</html>
